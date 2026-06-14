@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BibliotekaMVC.Models.Zaduzenje>
+
+<h2 class="page-title">📖 Zaduženja</h2>
+<p>
+    <a asp-action="Create" class="btn btn-brown">
+        ➕ Zaduži knjigu
+    </a>
+</p>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Knjiga</th>
+        
+        <th>Datum zaduženja</th>
+        <th>Datum vraćanja</th>
+        <th>Akcija</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Knjiga?.Naslov</td>
+            
+            <td>@item.DatumZaduzenja</td>
+            <td>@item.DatumVracanja</td>
+            <td>
+                @if (!item.Vraceno)
+                {
+                    <a class="btn btn-success" asp-action="VratiForm" asp-route-id="@item.Id">
+                        Vrati
+                    </a>
+                }
+                else
+                {
+                    <span>Vraćeno</span>
+                }
+            </td>
+        </tr>
+    }
+</table>

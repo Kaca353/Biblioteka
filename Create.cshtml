@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Zaduži knjigu";
+}
+
+<div class="form-wrapper">
+
+    <h2 class="zaduzenje-title">Zaduži knjigu</h2>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div style="color:red">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+
+    <form asp-action="Create" method="post" class="zaduzenje-form">
+
+        <label>Ime</label>
+        <input name="Ime" />
+
+        <br /><br />
+
+        <label>Prezime</label>
+        <input name="Prezime" />
+
+        <br /><br />
+
+        <label>Email</label>
+        <input name="Email" />
+
+        <br /><br />
+
+        <label>Knjiga</label>
+        <select name="KnjigaId">
+            @foreach (var k in ViewBag.Knjige)
+            {
+                <option value="@k.Id">@k.Naslov</option>
+            }
+        </select>
+
+        <br /><br />
+
+        <button type="submit">Zaduži</button>
+
+    </form>
+
+</div>

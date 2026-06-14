@@ -1,0 +1,25 @@
+﻿@model int
+
+<h2>Vrati knjigu</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div style="color:red">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+<form asp-action="Vrati" method="post">
+
+    <input type="hidden" name="id" value="@Model" />
+
+    <label>Email</label>
+    <input name="email" />
+
+    <br /><br />
+
+    <button type="submit">Vrati</button>
+</form>
